@@ -2,139 +2,45 @@
 <html lang="cs">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Investiční Kalkulačky CZ</title>
-
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KCFG41LS89"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KCFG41LS89');
+</script>
 <style>
-body{
-    font-family:Arial,sans-serif;
-    max-width:1000px;
-    margin:20px auto;
-    padding:20px;
-}
-section{
-    border:1px solid #ddd;
-    padding:15px;
-    margin:15px 0;
-    border-radius:10px;
-}
-input{
-    padding:8px;
-    margin:4px;
-}
-button{
-    padding:8px 14px;
-}
-.r{
-    font-weight:bold;
-    color:#0a66ff;
-}
+body{font-family:Arial,sans-serif;background:#f4f7fb;max-width:1100px;margin:auto;padding:20px}
+h1{text-align:center;color:#0a66ff}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.1);margin-bottom:20px}
+input{padding:10px;margin:5px;width:180px}
+button{padding:10px 15px;background:#0a66ff;color:white;border:none;border-radius:6px}
+.result{font-weight:bold;color:#0a66ff;margin-top:10px}
 </style>
 </head>
-
 <body>
-
 <h1>📈 Investiční Kalkulačky CZ</h1>
-
-<section>
+<div class="card">
 <h2>DCA kalkulačka</h2>
-
-<input id="dca_m" type="number" value="5000"> měsíčně
-<input id="dca_r" type="number" value="10"> %
-<input id="dca_y" type="number" value="20"> let
-
+<input id="m" type="number" value="5000"> Měsíčně
+<input id="r" type="number" value="10"> %
+<input id="y" type="number" value="20"> Let
 <button onclick="dca()">Spočítat</button>
-
-<div id="dca_res" class="r"></div>
-</section>
-
-<section>
-<h2>Složené úročení</h2>
-
-<input id="su_p" type="number" value="100000"> počáteční vklad
-<input id="su_r" type="number" value="8"> %
-<input id="su_y" type="number" value="20"> let
-
-<button onclick="su()">Spočítat</button>
-
-<div id="su_res" class="r"></div>
-</section>
-
-<section>
-<h2>ETF kalkulačka</h2>
-
-<input id="etf_m" type="number" value="3000"> měsíčně
-<input id="etf_y" type="number" value="30"> let
-
-<button onclick="etf()">Spočítat</button>
-
-<div id="etf_res" class="r"></div>
-</section>
-
-<section>
+<div id="dcares" class="result"></div>
+</div>
+<div class="card">
 <h2>FIRE kalkulačka</h2>
-
-<input id="fire_exp" type="number" value="30000"> měsíční výdaje
-
+<input id="f" type="number" value="30000"> Měsíční výdaje
 <button onclick="fire()">Spočítat</button>
-
-<div id="fire_res" class="r"></div>
-</section>
-
+<div id="fireres" class="result"></div>
+</div>
 <script>
-function fmt(x){
-    return Math.round(x).toLocaleString('cs-CZ') + ' Kč';
-}
-
-function dca(){
-    let m=+document.getElementById('dca_m').value;
-    let r=+document.getElementById('dca_r').value/100/12;
-    let n=+document.getElementById('dca_y').value*12;
-    let v=0;
-
-    for(let i=0;i<n;i++){
-        v=(v+m)*(1+r);
-    }
-
-    document.getElementById('dca_res').innerText =
-    'Budoucí hodnota: ' + fmt(v);
-}
-
-function su(){
-    let p=+document.getElementById('su_p').value;
-    let r=+document.getElementById('su_r').value/100;
-    let y=+document.getElementById('su_y').value;
-
-    document.getElementById('su_res').innerText =
-    'Budoucí hodnota: ' + fmt(p*Math.pow(1+r,y));
-}
-
-function etf(){
-    let m=+document.getElementById('etf_m').value;
-    let r=0.09/12;
-    let n=+document.getElementById('etf_y').value*12;
-    let v=0;
-
-    for(let i=0;i<n;i++){
-        v=(v+m)*(1+r);
-    }
-
-    document.getElementById('etf_res').innerText =
-    'Odhad při 9 % ročně: ' + fmt(v);
-}
-
-function fire(){
-    let e=+document.getElementById('fire_exp').value*12;
-
-    document.getElementById('fire_res').innerText =
-    'Cílové portfolio (4% pravidlo): ' + fmt(e*25);
-}
-
-dca();
-su();
-etf();
-fire();
+function fmt(x){return Math.round(x).toLocaleString('cs-CZ')+' Kč';}
+function dca(){let m=+m.value,r=+document.getElementById('r').value/100/12,n=+y.value*12,v=0;for(let i=0;i<n;i++)v=(v+m)*(1+r);dcares.innerText='Budoucí hodnota: '+fmt(v);}
+function fire(){let e=+f.value*12;fireres.innerText='Potřebné portfolio: '+fmt(e*25);}
+dca();fire();
 </script>
-
 </body>
 </html>
