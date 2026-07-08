@@ -1,43 +1,40 @@
 <!DOCTYPE html>
 <html lang="cs">
-<head>2  <script async src=ogletagmanager.com/gtag/js?id=Gript>3    window.dataLayer = window.dataLayer || [];4    function gtag(){dataLayer.push(arguments);}5    gtag('js', new Date());6 7    gtag('config', 'G-KCFG41LS89');8  </script>9 10  <meta charset="UTF-8">11  <meta name="viewport" content="width=device-width,initial-scale=1">12  <title>Investiční Kalkulačky CZ</title>13 14  <style>15  body{font-family:Arial;margin:20px;max-width:1000px}16  section{border:1px solid #ddd;padding:15px;margin:15px 0;border-radius:10px}17  input{padding:8px;margin:4px}18  button{padding:8px 14px}19  .r{font-weight:bold;color:#0a66ff}20  </style>21</head>
-<body>
-<h1>📈 Investiční Kalkulačky CZ</h1>
-<section>
-<h2>DCA kalkulačka</h2>
-<input id='dca_m' type='number' value='5000'> měsíčně
-<input id='dca_r' type='number' value='10'> %
-<input id='dca_y' type='number' value='20'> let
-<button onclick='dca()'>Spočítat</button>
-<div id='dca_res' class='r'></div>
-</section>
-<section>
-<h2>Složené úročení</h2>
-<input id='su_p' type='number' value='100000'> počáteční vklad
-<input id='su_r' type='number' value='8'> %
-<input id='su_y' type='number' value='20'> let
-<button onclick='su()'>Spočítat</button>
-<div id='su_res' class='r'></div>
-</section>
-<section>
-<h2>ETF kalkulačka</h2>
-<input id='etf_m' type='number' value='3000'> měsíčně
-<input id='etf_y' type='number' value='30'> let
-<button onclick='etf()'>Spočítat</button>
-<div id='etf_res' class='r'></div>
-</section>
-<section>
-<h2>FIRE kalkulačka</h2>
-<input id='fire_exp' type='number' value='30000'> měsíční výdaje
-<button onclick='fire()'>Spočítat</button>
-<div id='fire_res' class='r'></div>
-</section>
-<script>
-function fmt(x){return Math.round(x).toLocaleString('cs-CZ')+' Kč'}
-function dca(){let m=+dca_m.value,r=+dca_r.value/100/12,n=+dca_y.value*12,v=0;for(let i=0;i<n;i++)v=(v+m)*(1+r);dca_res.innerText='Budoucí hodnota: '+fmt(v)}
-function su(){let p=+su_p.value,r=+su_r.value/100,y=+su_y.value;su_res.innerText='Budoucí hodnota: '+fmt(p*Math.pow(1+r,y))}
-function etf(){let m=+etf_m.value,r=0.09/12,n=+etf_y.value*12,v=0;for(let i=0;i<n;i++)v=(v+m)*(1+r);etf_res.innerText='Odhad při 9 % ročně: '+fmt(v)}
-function fire(){let e=+fire_exp.value*12;fire_res.innerText='Cílové portfolio (4% pravidlo): '+fmt(e*25)}
-dca();su();etf();fire();
-</script></body></html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Investiční Kalkulačky CZ</title>
 
+letagmanager.com/gtag/js?id=G-KCFG41LS89"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KCFG41LS89');
+</script>
+
+<style>
+body{
+    font-family:Arial;
+    margin:20px;
+    max-width:1000px;
+}
+section{
+    border:1px solid #ddd;
+    padding:15px;
+    margin:15px 0;
+    border-radius:10px;
+}
+input{
+    padding:8px;
+    margin:4px;
+}
+button{
+    padding:8px 14px;
+}
+.r{
+    font-weight:bold;
+    color:#0a66ff;
+}
+</style>
+</head>
